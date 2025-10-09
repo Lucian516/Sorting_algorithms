@@ -7,6 +7,7 @@ from bubble import bubble3
 from bubble import bubble4
 from selection import selection
 from insertion import insertion
+from shellsort import shellsort
 import random
 import copy
 
@@ -19,6 +20,7 @@ def measure_sorts():
     bubble4_operations = []
     selection_operations = []
     insertion_operations = []
+    shellsort_operations = []
     for i in range(10,1000,10):
         arr = [random.randint(0, i**2) for x in range(i)]
         
@@ -28,6 +30,7 @@ def measure_sorts():
         bubble4_operations.append(bubble4(copy.deepcopy(arr))[1])
         selection_operations.append(selection(copy.deepcopy(arr))[1])
         insertion_operations.append(insertion(copy.deepcopy(arr))[1])
+        shellsort_operations.append(shellsort(copy.deepcopy(arr))[1])
 
     plt.plot(list_sizes, bubble_operations, label="bubble", color="green")
     plt.plot(list_sizes, bubble2_operations, label="bubble2", color="lime")
@@ -35,8 +38,9 @@ def measure_sorts():
     plt.plot(list_sizes, bubble4_operations, label="cocktail shaker", color="red")
     plt.plot(list_sizes, selection_operations, label="selection", color="blue")
     plt.plot(list_sizes, insertion_operations, label="insertion", color="purple")
+    plt.plot(list_sizes, shellsort_operations, label="shellsort", color="black")
     plt.legend()
     plt.show()
-    return 
+    return
 
 measure_sorts()
