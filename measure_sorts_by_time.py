@@ -8,12 +8,14 @@ from bubble import bubble4
 from selection import selection
 from insertion import insertion
 from shellsort import shellsort
+from quicksort import sort as quicksort
+from quicksort_faster import sort as quicksort_faster
 import random
 import copy
 
 
 def measure_sorts():
-    list_sizes = [n for n in range (10,1500,10)]
+    list_sizes = [n for n in range (10,1000,10)]
     bubble_times = []
     bubble2_times = []
     bubble3_times = []
@@ -21,7 +23,9 @@ def measure_sorts():
     selection_times = []
     insertion_times = []
     shellsort_times=[]
-    for i in range(10,1500,10):
+    quicksort_times = []
+    quicksort_faster_times = []
+    for i in range(10,1000,10):
         arr = [random.randint(0, i**2) for x in range(i)]
 
         
@@ -32,6 +36,8 @@ def measure_sorts():
         selection_times.append(selection(copy.deepcopy(arr))[0])
         insertion_times.append(insertion(copy.deepcopy(arr))[0])
         shellsort_times.append(shellsort(copy.deepcopy(arr))[0])
+        quicksort_times.append(quicksort(copy.deepcopy(arr))[0])
+        quicksort_faster_times.append(quicksort_faster(copy.deepcopy(arr))[0])
 
     plt.plot(list_sizes, bubble_times, label="bubble", color="green")
     plt.plot(list_sizes, bubble2_times, label="bubble2", color="lime")
@@ -40,6 +46,8 @@ def measure_sorts():
     plt.plot(list_sizes, selection_times, label="selection", color="blue")
     plt.plot(list_sizes, insertion_times, label="insertion", color="purple")
     plt.plot(list_sizes, shellsort_times, label="shellsort", color="black")
+    plt.plot(list_sizes, quicksort_times, label="quicksort", color="orange")
+    plt.plot(list_sizes, quicksort_faster_times, label="quicksort faster", color="brown")
     plt.legend()
     plt.show()
     return 

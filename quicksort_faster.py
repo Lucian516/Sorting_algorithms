@@ -1,17 +1,20 @@
+import random 
 import time
 
 #arr = [8,2,45, 12, 21, 78, 34, 123, 11, 56, 3, 7, 19]
-
 count=0
 
 def pivotselect(arr, i, j):
-    return arr[(i+j)//2]
+    a = random.randint(i, j)
+    b = random.randint(i, j)
+    c = random.randint(i, j)
+    return sorted([arr[a], arr[b], arr[c]])[1]
 
 def partition(arr, left, right, pivot):
     global count
     while(left<=right):
         while(arr[left]<pivot): 
-            count+=1
+            count+=1 
             left+=1
         while(arr[right]>pivot): 
             count+=1
@@ -33,4 +36,5 @@ def sort(arr):
     quicksort(arr, 0, len(arr)-1)
     end = time.time()
     return [end-start, count]
+#sort(arr)
 #print (arr)
